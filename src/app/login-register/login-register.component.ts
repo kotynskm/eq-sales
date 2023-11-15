@@ -20,7 +20,6 @@ export class LoginRegisterComponent {
   signInUser() {
     const auth = getAuth();
     const email = this.loginForm.value.email || '';
-    console.log(email);
     const password = this.loginForm.value.password || '';
 
     this.auth
