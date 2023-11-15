@@ -1,0 +1,11 @@
+<div>
+  <h2>Enter Your Account Information</h2>
+  <form [formGroup]="loginForm">
+    <label>Email</label>
+    <input type="text" name="email" formControlName="email" />
+    <label>Password</label>
+    <input type="text" name="password" formControlName="password" />
+    <button type="submit" (click)="signInUser()">Login</button>
+    <button type="submit">Register</button>
+  </form>
+</div>
