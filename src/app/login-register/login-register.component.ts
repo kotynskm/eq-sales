@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { FormGroup, FormControl } from '@angular/forms';
-import { Router } from '@angular/router';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-login-register',
@@ -10,7 +8,7 @@ import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
   styleUrls: ['./login-register.component.css'],
 })
 export class LoginRegisterComponent {
-  constructor(private route: Router, private auth: AngularFireAuth) {}
+  constructor(private authService: AuthService) {}
 
   loginForm = new FormGroup({
     email: new FormControl(''),
@@ -18,21 +16,10 @@ export class LoginRegisterComponent {
   });
 
   signInUser() {
-    const auth = getAuth();
     const email = this.loginForm.value.email || '';
     const password = this.loginForm.value.password || '';
-
-    this.auth
-      .signInWithEmailAndPassword(email, password)
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        this.route.navigate(['/landing-page']);
-        // ...
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-      });
+    this.authService.login(email, password);
   }
+
+  registerUser() {}
 }
