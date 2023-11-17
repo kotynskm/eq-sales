@@ -10,7 +10,7 @@ export class DataService {
   baseUrl: string = 'https://elevated-web-351500-default-rtdb.firebaseio.com/';
 
   getAllHorses() {
-    return this.http.get(this.baseUrl).subscribe((data) => {
+    return this.http.get(this.baseUrl + 'horses.json').subscribe((data) => {
       console.log(data);
     });
   }

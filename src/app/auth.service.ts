@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
+import { BehaviorSubject, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -8,13 +9,14 @@ import { Router } from '@angular/router';
 export class AuthService {
   constructor(private auth: AngularFireAuth, private router: Router) {}
   user!: Object | null;
-  loggedIn = false;
+  loggedInStatus = new BehaviorSubject<boolean>(false);
 
   login(email: string, password: string) {
     this.auth
       .signInWithEmailAndPassword(email, password)
       .then((userCredential) => {
         // Signed in
+        this.setLoggedIn(true);
         this.user = userCredential.user;
         console.log(this.user);
         this.router.navigate(['/landing-page']);
@@ -31,6 +33,7 @@ export class AuthService {
       .createUserWithEmailAndPassword(email, password)
       .then((userCredential) => {
         // Signed in
+        this.setLoggedIn(true);
         this.user = userCredential.user;
         console.log(this.user);
         this.router.navigate(['/landing-page']);
@@ -43,6 +46,8 @@ export class AuthService {
   }
 
   logout() {
+    this.setLoggedIn(false);
+    this.router.navigate(['/']);
     return this.auth.signOut();
   }
 
@@ -55,5 +60,9 @@ export class AuthService {
       this.router.navigate(['/']);
       return false;
     }
+  }
+
+  setLoggedIn(value: boolean) {
+    return this.loggedInStatus.next(value);
   }
 }

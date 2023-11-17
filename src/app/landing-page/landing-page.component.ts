@@ -20,9 +20,4 @@ export class LandingPageComponent {
   ngOnInit() {
     this.dataService.getAllHorses();
   }
-
-  logout() {
-    this.authService.logout();
-    this.router.navigate(['/']);
-  }
 }
