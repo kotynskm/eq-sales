@@ -21,5 +21,9 @@ export class LoginRegisterComponent {
     this.authService.login(email, password);
   }
 
-  registerUser() {}
+  registerUser() {
+    const email = this.loginForm.value.email || '';
+    const password = this.loginForm.value.password || '';
+    this.authService.register(email, password);
+  }
 }
