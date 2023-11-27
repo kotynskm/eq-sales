@@ -12,6 +12,7 @@ import { LoginRegisterComponent } from './login-register/login-register.componen
 import { environment } from './environments/environment';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { AccountComponent } from './account/account.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { HttpClientModule } from '@angular/common/http';
     DashboardComponent,
     LandingPageComponent,
     LoginRegisterComponent,
+    AccountComponent,
   ],
   imports: [
     BrowserModule,
