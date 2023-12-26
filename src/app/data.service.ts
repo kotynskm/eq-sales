@@ -1,17 +1,25 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DataService {
-  constructor(private http: HttpClient) {}
+  constructor(private fbs: AngularFirestore) {}
 
-  baseUrl: string = 'https://elevated-web-351500-default-rtdb.firebaseio.com/';
+  getData() {
+    const data = this.fbs
+      .collection('horses')
+      .get()
+      .subscribe((querySnapshot) =>
+        querySnapshot.docs.forEach((doc) => {
+          const data: any = doc.data();
 
-  getAllHorses() {
-    return this.http.get(this.baseUrl + 'horses.json').subscribe((data) => {
-      console.log(data);
-    });
+          //access specific fields on the document
+          const name = data.name;
+
+          console.log('NAME IS: ', name);
+        })
+      );
   }
 }

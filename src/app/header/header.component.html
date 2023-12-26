@@ -4,7 +4,13 @@
   </div>
   <nav>
     <ul>
-      <li><a routerLink="/">Home</a></li>
+      <li *ngIf="!isLoggedIn; else showAccountLink">
+        <a routerLink="/">Home</a>
+      </li>
+      <ng-template #showAccountLink>
+        <!-- Displayed when the user is logged in -->
+        <a routerLink="/landing-page">Dashboard</a>
+      </ng-template>
       <li><a routerLink="/about">About</a></li>
       <li *ngIf="isLoggedIn"><a href="#" (click)="logout()">Logout</a></li>
     </ul>

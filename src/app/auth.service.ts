@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
+import { verifyBeforeUpdateEmail } from 'firebase/auth';
 
 @Injectable({
   providedIn: 'root',
@@ -57,7 +58,6 @@ export class AuthService {
       return true;
     } else {
       console.log('user is logged out');
-      this.router.navigate(['/']);
       return false;
     }
   }
@@ -65,4 +65,26 @@ export class AuthService {
   setLoggedIn(value: boolean) {
     return this.loggedInStatus.next(value);
   }
+
+  getUser() {
+    return this.user;
+  }
+
+  // TODO:
+  // updateEmail() {
+  //   this.auth.user.pipe(take(1)).subscribe((user) => {
+  //     if (user) {
+  //       verifyBeforeUpdateEmail(user, 'test@gmail.com')
+  //         .then(() => {
+  //           console.log('email updated');
+  //         })
+  //         .catch((err) => {
+  //           console.log('error: ', err);
+  //         });
+  //     } else {
+  //       // user not found handle as needed
+  //       console.log('user not found');
+  //     }
+  //   });
+  // }
 }

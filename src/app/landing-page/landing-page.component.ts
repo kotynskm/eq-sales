@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { AuthService } from '../auth.service';
-import { Router } from '@angular/router';
 import { DataService } from '../data.service';
 
 @Component({
@@ -9,15 +7,9 @@ import { DataService } from '../data.service';
   styleUrls: ['./landing-page.component.css'],
 })
 export class LandingPageComponent {
-  constructor(
-    private authService: AuthService,
-    private router: Router,
-    private dataService: DataService
-  ) {}
-
-  saleHorses = [];
+  constructor(private dataService: DataService) {}
 
   ngOnInit() {
-    this.dataService.getAllHorses();
+    this.dataService.getData();
   }
 }
