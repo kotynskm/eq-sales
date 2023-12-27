@@ -5,6 +5,8 @@ import { LoginRegisterComponent } from './login-register/login-register.componen
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { authGuard } from './auth.guard';
 import { AccountComponent } from './account/account.component';
+import { SearchComponent } from './search/search.component';
+import { ListingsComponent } from './search/listings/listings.component';
 
 const routes: Routes = [
   { path: '', component: DashboardComponent },
@@ -15,6 +17,12 @@ const routes: Routes = [
     canActivate: [authGuard],
   },
   { path: 'account', component: AccountComponent, canActivate: [authGuard] },
+  {
+    path: 'search',
+    component: SearchComponent,
+    canActivate: [authGuard],
+    children: [{ path: 'allhorses', component: ListingsComponent }],
+  },
 ];
 
 @NgModule({

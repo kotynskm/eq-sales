@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Horse } from 'horse.model';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -7,7 +9,16 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 export class DataService {
   constructor(private fbs: AngularFirestore) {}
 
-  getData() {
+  sourceDataHorses = new BehaviorSubject<Horse[]>([]);
+  currentHorses = this.sourceDataHorses.asObservable();
+
+  updateCurrentHorses(horses: Horse[]) {
+    this.sourceDataHorses.next(horses);
+  }
+
+  getAllHorses(): Horse[] {
+    let horseObj: Horse;
+    let horseArr: Horse[] = [];
     const data = this.fbs
       .collection('horses')
       .get()
@@ -15,11 +26,24 @@ export class DataService {
         querySnapshot.docs.forEach((doc) => {
           const data: any = doc.data();
 
-          //access specific fields on the document
-          const name = data.name;
+          //access specific fields on the document and create horse object
+          horseObj = {
+            name: data.name,
+            age: data.age,
+            height: data.height,
+            discipline: data.discipline,
+            location: data.location,
+            breed: data.breed,
+            id: doc.id,
+            price: data.price,
+            description: data.description,
+          };
+          console.log(doc);
 
-          console.log('NAME IS: ', name);
+          horseArr.push(horseObj);
+          console.log(horseArr);
         })
       );
+    return horseArr;
   }
 }

@@ -13,6 +13,9 @@ import { environment } from './environments/environment';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AccountComponent } from './account/account.component';
+import { SearchComponent } from './search/search.component';
+import { ListingsComponent } from './search/listings/listings.component';
+import { HorseComponent } from './search/listings/horse/horse.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +26,9 @@ import { AccountComponent } from './account/account.component';
     LandingPageComponent,
     LoginRegisterComponent,
     AccountComponent,
+    SearchComponent,
+    ListingsComponent,
+    HorseComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,38 @@
+<div>
+  <h1>Search Horses</h1>
+  <button (click)="loadAllHorses()">Show All Listings</button>
+  <form>
+    <label>Age</label>
+    <select>
+      <option>0-3</option>
+      <option>3-6</option>
+      <option>6-12</option>
+      <option>12-24</option>
+      <option>>=24</option>
+    </select>
+    <label>Discipline</label>
+    <select>
+      <option>Hunter</option>
+      <option>Jumper</option>
+      <option>Equitation</option>
+    </select>
+    <label>Price Range</label>
+    <select>
+      <option>0-5000</option>
+      <option>5000-10000</option>
+      <option>10000-30000</option>
+      <option>30000-60000</option>
+      <option>>=60000</option>
+    </select>
+    <label>Height</label>
+    <select>
+      <option>0-12.2</option>
+      <option>12.2-14.2</option>
+      <option>14.2-16.2</option>
+      <option>16.2-17.2</option>
+      <option>>=17.2</option>
+    </select>
+  </form>
+</div>
+
+<router-outlet></router-outlet>
