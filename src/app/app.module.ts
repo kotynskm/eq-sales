@@ -16,6 +16,7 @@ import { AccountComponent } from './account/account.component';
 import { SearchComponent } from './search/search.component';
 import { ListingsComponent } from './search/listings/listings.component';
 import { HorseComponent } from './search/listings/horse/horse.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { HorseComponent } from './search/listings/horse/horse.component';
     AngularFireAuthModule,
     ReactiveFormsModule,
     HttpClientModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
