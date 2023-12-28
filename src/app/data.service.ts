@@ -38,10 +38,7 @@ export class DataService {
             price: data.price,
             description: data.description,
           };
-          console.log(doc);
-
           horseArr.push(horseObj);
-          console.log(horseArr);
         })
       );
     return horseArr;
@@ -59,11 +56,7 @@ export class DataService {
 
     // apply filters based on search values
     if (searchValues.age !== '') {
-      let ageRange = searchValues.age.split('-');
-      console.log('AGE RANGE', ageRange);
-      query = query
-        .where('age', '>=', parseInt(ageRange[0]))
-        .where('age', '<=', parseInt(ageRange[1]));
+      query = query.where('age', '==', parseInt(searchValues.age));
     }
 
     if (searchValues.discipline !== '') {
@@ -71,12 +64,9 @@ export class DataService {
     }
 
     if (searchValues.price !== '') {
-      let priceRange = searchValues.price.split('-');
-      query = query
-        .where('price', '>=', parseInt(priceRange[0]))
-        .where('price', '<=', parseInt(priceRange[1]));
+      query = query.where('price', '==', parseInt(searchValues.price));
     }
-
+    // firebase querying does not allow multiple queries with >=/<=
     if (searchValues.height !== '') {
       let heightRange = searchValues.height.split('-');
       query = query
@@ -88,7 +78,6 @@ export class DataService {
     query.get().then((querySnapshot: any[]) => {
       querySnapshot.forEach((doc) => {
         const data: any = doc.data();
-        console.log('Document data:', data);
         // access specific fields on the document and create horse object
         horseObj = {
           name: data.name,
@@ -102,7 +91,6 @@ export class DataService {
           description: data.description,
         };
         horseArr.push(horseObj);
-        console.log('HORSE ARRAY,', horseArr);
       });
     });
     return horseArr;
