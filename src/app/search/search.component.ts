@@ -1,6 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
 import { DataService } from '../data.service';
-import { Horse } from 'horse.model';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 
@@ -22,6 +21,8 @@ export class SearchComponent {
   }
 
   onSubmit() {
-    console.log('form submitted, values: ', this.searchForm?.value);
+    const horses = this.dataService.getHorsesByFilter(this.searchForm?.value);
+    this.dataService.updateCurrentHorses(horses);
+    this.router.navigate(['/search/allhorses']);
   }
 }
