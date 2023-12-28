@@ -143,4 +143,34 @@ export class DataService {
       console.error('User not signed in.');
     }
   }
+
+  getHorsesByUserID(userID: string) {
+    let horseObj: Horse;
+    let horseArr: Horse[] = [];
+    let query: any = this.fbs.collection('horses').ref;
+
+    query = query.where('userID', '==', userID);
+
+    query.get().then((querySnapshot: any[]) => {
+      querySnapshot.forEach((doc) => {
+        const data: any = doc.data();
+        // access specific fields on the document and create horse object
+        horseObj = {
+          name: data.name,
+          age: data.age,
+          height: data.height,
+          discipline: data.discipline,
+          location: data.location,
+          breed: data.breed,
+          id: doc.id,
+          price: data.price,
+          description: data.description,
+          image: data.image,
+          userID: data.userID,
+        };
+        horseArr.push(horseObj);
+      });
+    });
+    return horseArr;
+  }
 }

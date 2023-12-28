@@ -18,7 +18,7 @@ export class AuthService {
       .then((userCredential) => {
         // Signed in
         this.setLoggedIn(true);
-        this.user = userCredential.user?.uid;
+        this.user = userCredential.user;
         console.log(this.user);
         this.router.navigate(['/landing-page']);
         // ...
@@ -35,7 +35,7 @@ export class AuthService {
       .then((userCredential) => {
         // Signed in
         this.setLoggedIn(true);
-        this.user = userCredential.user?.uid;
+        this.user = userCredential.user;
         console.log(this.user);
         this.router.navigate(['/landing-page']);
         // ...

@@ -3,4 +3,10 @@
     <h1>Manage your Account: {{ user.email }}</h1>
     <!-- <button (click)="updateEmail()">Update Email</button> -->
   </div>
+  <div>
+    <h2>Your Horses</h2>
+    <ul *ngFor="let horse of userHorses">
+      <li>{{ horse.name }}</li>
+    </ul>
+  </div>
 </div>
