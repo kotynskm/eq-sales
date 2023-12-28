@@ -1,5 +1,5 @@
 export interface Horse {
-  id: string;
+  id?: string;
   name: string;
   breed: string;
   description: string;
@@ -9,4 +9,5 @@ export interface Horse {
   discipline: string;
   height: number;
   image: string;
+  userID: string;
 }

@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Horse } from 'horse.model';
 import { BehaviorSubject } from 'rxjs';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DataService {
-  constructor(private fbs: AngularFirestore) {}
+  constructor(private fbs: AngularFirestore, private auth: AuthService) {}
 
   sourceDataHorses = new BehaviorSubject<Horse[]>([]);
   currentHorses = this.sourceDataHorses.asObservable();
@@ -38,6 +39,7 @@ export class DataService {
             price: data.price,
             description: data.description,
             image: data.image,
+            userID: data.userID,
           };
           horseArr.push(horseObj);
         })
@@ -91,10 +93,54 @@ export class DataService {
           price: data.price,
           description: data.description,
           image: data.image,
+          userID: data.userID,
         };
         horseArr.push(horseObj);
       });
     });
     return horseArr;
+  }
+
+  createHorseDocument(createValues: {
+    age: number;
+    price: number;
+    discipline: string;
+    height: number;
+    name: string;
+    description: string;
+    location: string;
+    breed: string;
+    image: string;
+  }) {
+    // get current user id
+    const userID = this.auth.getUser();
+    let horseObj: Horse;
+
+    horseObj = {
+      name: createValues.name,
+      age: createValues.age,
+      height: createValues.height,
+      discipline: createValues.discipline,
+      location: createValues.location,
+      breed: createValues.breed,
+      price: createValues.price,
+      description: createValues.description,
+      image: createValues.image,
+      userID: userID,
+    };
+
+    if (userID) {
+      this.fbs
+        .collection('horses')
+        .add(horseObj)
+        .then((docRef) => {
+          console.log('Document written with ID: ', docRef.id);
+        })
+        .catch((error) => {
+          console.error('Error adding document: ', error);
+        });
+    } else {
+      console.error('User not signed in.');
+    }
   }
 }

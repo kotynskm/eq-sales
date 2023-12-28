@@ -1,0 +1,94 @@
+<div>
+  <h1>Create a Listing</h1>
+  <form #createForm="ngForm" (ngSubmit)="onSubmit()">
+    <label for="age">Age</label>
+    <select id="age" name="age" ngModel required>
+      <option></option>
+      <option value="3">3</option>
+      <option value="6">6</option>
+      <option value="9">9</option>
+      <option value="12">12</option>
+      <option value="15">15</option>
+      <option value="18">18</option>
+    </select>
+    <label for="discipline">Discipline</label>
+    <select id="discipline" name="discipline" ngModel required>
+      <option></option>
+      <option value="Hunter">Hunter</option>
+      <option value="Jumper">Jumper</option>
+      <option value="Equitation">Equitation</option>
+    </select>
+    <label for="price range">Price</label>
+    <select id="price" name="price" ngModel required>
+      <option></option>
+      <option value="5000">5000</option>
+      <option value="10000">10000</option>
+      <option value="20000">20000</option>
+      <option value="30000">30000</option>
+      <option value="40000">40000</option>
+      <option value="50000">50000</option>
+    </select>
+    <label for="height">Height</label>
+    <input
+      type="text"
+      id="height"
+      name="height"
+      placeholder="enter a height between 12.2 and 18"
+      required
+      ngModel
+    />
+    <label for="image">Image Url</label>
+    <input
+      type="text"
+      id="image"
+      name="image"
+      placeholder="enter a url to an image"
+      required
+      ngModel
+    />
+    <label for="name">Name</label>
+    <input
+      type="text"
+      id="name"
+      name="name"
+      placeholder="enter a name"
+      required
+      ngModel
+    />
+    <label for="description">Description</label>
+    <input
+      type="text"
+      id="description"
+      name="description"
+      placeholder="enter a description"
+      required
+      ngModel
+    />
+    <label for="location">Location</label>
+    <input
+      type="text"
+      id="location"
+      name="location"
+      placeholder="enter a location"
+      required
+      ngModel
+    />
+    <label for="discipline">Discipline</label>
+    <select id="discipline" name="discipline" required ngModel>
+      <option>Hunter</option>
+      <option>Jumper</option>
+      <option>Equitation</option>
+    </select>
+    <label for="breed">Breed</label>
+    <select id="breed" name="breed" required ngModel>
+      <option>Holsteiner</option>
+      <option>Hanoverian</option>
+      <option>KWPN</option>
+      <option>Thoroughbred</option>
+      <option>Trakehner</option>
+      <option>Irish Sport Horse</option>
+      <option>Lusitano</option>
+    </select>
+    <button type="submit" [disabled]="!createForm.valid">Create</button>
+  </form>
+</div>

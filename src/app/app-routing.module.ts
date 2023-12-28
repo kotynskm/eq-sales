@@ -8,6 +8,7 @@ import { AccountComponent } from './account/account.component';
 import { SearchComponent } from './search/search.component';
 import { ListingsComponent } from './search/listings/listings.component';
 import { AboutComponent } from './about/about.component';
+import { CreateComponent } from './create/create.component';
 
 const routes: Routes = [
   { path: '', component: DashboardComponent },
@@ -19,6 +20,7 @@ const routes: Routes = [
   },
   { path: 'account', component: AccountComponent, canActivate: [authGuard] },
   { path: 'about', component: AboutComponent },
+  { path: 'create', component: CreateComponent, canActivate: [authGuard] },
   {
     path: 'search',
     component: SearchComponent,

@@ -18,6 +18,7 @@ import { ListingsComponent } from './search/listings/listings.component';
 import { HorseComponent } from './search/listings/horse/horse.component';
 import { FormsModule } from '@angular/forms';
 import { AboutComponent } from './about/about.component';
+import { CreateComponent } from './create/create.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { AboutComponent } from './about/about.component';
     ListingsComponent,
     HorseComponent,
     AboutComponent,
+    CreateComponent,
   ],
   imports: [
     BrowserModule,

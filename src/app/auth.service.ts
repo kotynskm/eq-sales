@@ -9,7 +9,7 @@ import { verifyBeforeUpdateEmail } from 'firebase/auth';
 })
 export class AuthService {
   constructor(private auth: AngularFireAuth, private router: Router) {}
-  user!: Object | null;
+  user: any;
   loggedInStatus = new BehaviorSubject<boolean>(false);
 
   login(email: string, password: string) {
@@ -18,7 +18,7 @@ export class AuthService {
       .then((userCredential) => {
         // Signed in
         this.setLoggedIn(true);
-        this.user = userCredential.user;
+        this.user = userCredential.user?.uid;
         console.log(this.user);
         this.router.navigate(['/landing-page']);
         // ...
@@ -35,7 +35,7 @@ export class AuthService {
       .then((userCredential) => {
         // Signed in
         this.setLoggedIn(true);
-        this.user = userCredential.user;
+        this.user = userCredential.user?.uid;
         console.log(this.user);
         this.router.navigate(['/landing-page']);
         // ...
