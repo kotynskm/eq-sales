@@ -8,4 +8,5 @@ export interface Horse {
   location: string;
   discipline: string;
   height: number;
+  image: string;
 }

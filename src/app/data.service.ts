@@ -37,6 +37,7 @@ export class DataService {
             id: doc.id,
             price: data.price,
             description: data.description,
+            image: data.image,
           };
           horseArr.push(horseObj);
         })
@@ -89,6 +90,7 @@ export class DataService {
           id: doc.id,
           price: data.price,
           description: data.description,
+          image: data.image,
         };
         horseArr.push(horseObj);
       });

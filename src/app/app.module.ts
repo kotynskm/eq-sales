@@ -17,6 +17,7 @@ import { SearchComponent } from './search/search.component';
 import { ListingsComponent } from './search/listings/listings.component';
 import { HorseComponent } from './search/listings/horse/horse.component';
 import { FormsModule } from '@angular/forms';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { FormsModule } from '@angular/forms';
     SearchComponent,
     ListingsComponent,
     HorseComponent,
+    AboutComponent,
   ],
   imports: [
     BrowserModule,
