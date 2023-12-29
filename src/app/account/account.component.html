@@ -6,7 +6,9 @@
   <div>
     <h2>Your Horses</h2>
     <ul *ngFor="let horse of userHorses">
-      <li>{{ horse.name }}</li>
+      <app-horse [horse]="horse"></app-horse>
+      <button (click)="updateHorse(horse.id)">Update Horse</button>
+      <button (click)="deleteHorse(horse.id)">Delete Horse</button>
     </ul>
   </div>
 </div>

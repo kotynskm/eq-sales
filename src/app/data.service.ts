@@ -12,9 +12,23 @@ export class DataService {
 
   sourceDataHorses = new BehaviorSubject<Horse[]>([]);
   currentHorses = this.sourceDataHorses.asObservable();
+  userID = this.auth.getUser();
 
   updateCurrentHorses(horses: Horse[]) {
     this.sourceDataHorses.next(horses);
+  }
+
+  deleteHorse(id: any): Promise<void> {
+    return this.fbs
+      .collection('horses')
+      .doc(id)
+      .delete()
+      .then(() => {
+        console.log('successfully deleted document: ', id);
+      })
+      .catch((err) => {
+        console.log('there was an error deleting the document: ', err);
+      });
   }
 
   getAllHorses(): Horse[] {
@@ -126,7 +140,7 @@ export class DataService {
       price: createValues.price,
       description: createValues.description,
       image: createValues.image,
-      userID: userID,
+      userID: userID.uid,
     };
 
     if (userID) {
