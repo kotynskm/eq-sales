@@ -13,5 +13,6 @@ export class CreateComponent {
 
   onSubmit() {
     this.dataService.createHorseDocument(this.createForm?.value);
+    this.createForm?.reset();
   }
 }
